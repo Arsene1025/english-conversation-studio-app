@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Conversation Studio</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<!-- START SCREEN -->
+<main id="start" class="screen">
+  <header class="top"><h1>English Conversation Studio</h1><span id="syncBadge" class="badge" title="GitHub 동기화 상태">sync …</span></header>
+  <section class="card">
+    <h2>학습 모드</h2>
+    <div class="seg" id="modePick" role="radiogroup" aria-label="학습 모드">
+      <button data-mode="text" role="radio">⌨️ 텍스트<small>마이크 불필요</small></button>
+      <button data-mode="voice" role="radio">🎙️ 음성<small>말하고 듣기</small></button>
+      <button data-mode="mixed" role="radio">🔀 혼합<small>입력/출력 개별 선택</small></button>
+    </div>
+    <div id="mixedPick" class="row hidden">
+      <label>입력 <select id="inPick"><option value="text">텍스트</option><option value="voice">음성</option></select></label>
+      <label>출력 <select id="outPick"><option value="text">텍스트</option><option value="voice">음성 + 텍스트</option></select></label>
+    </div>
+    <div class="row">
+      <label>영어 수준 <select id="levelPick"><option value="A1">A1 입문</option><option value="A2">A2 초급</option><option value="B1">B1 중급</option><option value="B2">B2 중상급</option><option value="C1">C1 상급</option></select></label>
+      <label>주제 <select id="topicPick"><option>daily life</option><option>travel</option><option>hobbies</option><option>games</option><option>programming</option><option>work</option><option>food</option></select></label>
+    </div>
+    <div class="row">
+      <button id="btnNew" class="primary">새로운 학습 시작</button>
+      <button id="btnResume" class="hidden">기존 학습 이어하기</button>
+    </div>
+    <p id="startMsg" class="muted"></p>
+  </section>
+  <section class="card" id="progressCard">
+    <h2>학습 현황</h2>
+    <div id="progress" class="muted">불러오는 중…</div>
+  </section>
+</main>
+
+<!-- CHAT SCREEN -->
+<main id="chat" class="screen hidden">
+  <header class="top">
+    <h1>대화</h1>
+    <div class="row tight">
+      <select id="modeSwitch" aria-label="학습 모드 전환"><option value="text">⌨️ 텍스트</option><option value="voice">🎙️ 음성</option><option value="mixed">🔀 혼합</option></select>
+      <span id="mixedInline" class="row tight hidden">
+        <select id="inSwitch" aria-label="입력"><option value="text">입력: 텍스트</option><option value="voice">입력: 음성</option></select>
+        <select id="outSwitch" aria-label="출력"><option value="text">출력: 텍스트</option><option value="voice">출력: 음성+텍스트</option></select>
+      </span>
+      <button id="btnEnd" class="danger">세션 종료</button>
+    </div>
+  </header>
+  <div class="layout">
+    <section class="log" id="log" aria-live="polite"></section>
+    <aside class="panel" id="corrPanel">
+      <h2>문법 교정</h2>
+      <div id="corrBody" class="muted">내가 쓴 문장에 대한 교정이 여기에 표시됩니다.</div>
+      <h3>새 표현</h3>
+      <div id="vocabBody" class="muted">-</div>
+    </aside>
+  </div>
+  <div id="notice" class="notice hidden" role="status"></div>
+
+  <footer class="composer">
+    <div id="voiceBar" class="row hidden">
+      <button id="btnMic" class="mic" title="누르고 말하기 (Space 길게)">🎙️ 누르고 말하기</button>
+      <span id="micState" class="muted">대기</span>
+      <button id="btnStop" title="재생 중단">⏹ 중단</button>
+      <button id="btnReplay" title="마지막 답변 다시 듣기">🔁 다시 듣기</button>
+      <label>속도 <input id="rate" type="range" min="0.6" max="1.4" step="0.1" value="1"><output id="rateOut">1.0×</output></label>
+      <label class="check"><input type="checkbox" id="autoPlay" checked> 자동 재생</label>
+      <label class="check"><input type="checkbox" id="autoEnd"> 발화 종료 자동 감지</label>
+      <span id="voiceEngine" class="badge">엔진 확인 중</span>
+    </div>
+    <form id="form" class="row">
+      <textarea id="input" rows="2" placeholder="영어로 입력하세요 (Enter 전송, Shift+Enter 줄바꿈)"></textarea>
+      <button class="primary" id="btnSend" type="submit">전송</button>
+    </form>
+    <p id="sttHint" class="muted hidden">🎙️ 음성 인식 결과입니다. 틀린 부분이 있으면 고친 뒤 전송하세요.</p>
+  </footer>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>

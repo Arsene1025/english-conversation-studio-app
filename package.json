@@ -1,0 +1,8 @@
+{
+  "name": "english-conversation-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Text/voice/mixed English conversation practice with Claude, grammar correction and Git-synced progress",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node server/index.js", "test": "node --test \"test/*.test.js\"" }
+}
