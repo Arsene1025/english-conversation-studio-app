@@ -23,7 +23,8 @@
     </div>
     <div class="row">
       <label>영어 수준 <select id="levelPick"><option value="A1">A1 입문</option><option value="A2">A2 초급</option><option value="B1">B1 중급</option><option value="B2">B2 중상급</option><option value="C1">C1 상급</option></select></label>
-      <label>주제 <select id="topicPick"><option>daily life</option><option>travel</option><option>hobbies</option><option>games</option><option>programming</option><option>work</option><option>food</option></select></label>
+      <label>주제 <select id="topicPick"><option>daily life</option><option>travel</option><option>hobbies</option><option>games</option><option>programming</option><option>work</option><option>food</option><option value="__custom__">직접 입력…</option></select></label>
+      <label id="topicCustomWrap" class="hidden">직접 입력 주제 <input id="topicCustom" type="text" maxlength="80" placeholder="e.g. job interview, my trip to Japan"></label>
     </div>
     <div class="row">
       <button id="btnNew" class="primary">새로운 학습 시작</button>

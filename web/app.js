@@ -23,7 +23,7 @@ function renderStart() {
   for (const b of document.querySelectorAll('#modePick button')) b.setAttribute('aria-checked', String(b.dataset.mode === s.mode));
   $('mixedPick').classList.toggle('hidden', s.mode !== 'mixed');
   $('inPick').value = s.input; $('outPick').value = s.output;
-  $('levelPick').value = s.level; $('topicPick').value = s.topic;
+  $('levelPick').value = s.level; setTopicUi(s.topic);
   $('btnResume').classList.toggle('hidden', !st.open);
   if (st.open) $('btnResume').textContent = `기존 학습 이어하기 (${st.open.topic}, ${st.open.turns}턴)`;
   const sy = st.sync, b = $('syncBadge');
@@ -43,9 +43,23 @@ async function refresh() {
   S.state = await api('/api/state'); S.settings = S.state.settings; renderStart();
 }
 
+function setTopicUi(topic) {
+  const sel = $('topicPick');
+  const known = [...sel.options].some((o) => o.value === topic && o.value !== '__custom__');
+  sel.value = known ? topic : '__custom__';
+  if (!known) $('topicCustom').value = topic;
+  $('topicCustomWrap').classList.toggle('hidden', known);
+}
+$('topicPick').addEventListener('change', () => $('topicCustomWrap').classList.toggle('hidden', $('topicPick').value !== '__custom__'));
+
+function pickedTopic() {
+  if ($('topicPick').value !== '__custom__') return $('topicPick').value;
+  return $('topicCustom').value.trim().slice(0, 80) || 'daily life';
+}
+
 function pickedSettings() {
   const mode = document.querySelector('#modePick [aria-checked=true]').dataset.mode;
-  return { mode, input: $('inPick').value, output: $('outPick').value, level: $('levelPick').value, topic: $('topicPick').value };
+  return { mode, input: $('inPick').value, output: $('outPick').value, level: $('levelPick').value, topic: pickedTopic() };
 }
 
 async function startSession(resumeId) {

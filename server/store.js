@@ -122,7 +122,7 @@ function summarize(s) {
     schema: 1, id: s.id, date: s.startedAt.slice(0, 10), machine: s.machine,
     startedAt: s.startedAt, endedAt: s.endedAt || end.toISOString(),
     durationMin: Math.round((end - new Date(s.startedAt)) / 6000) / 10,
-    modes: usedModes, userTurnsByInput: modeTurns, topic: s.topic, level: s.level, levelEstimate: s.levelEstimate,
+    modes: usedModes, userTurnsByInput: modeTurns, topic: sanitize(s.topic), level: s.level, levelEstimate: s.levelEstimate,
     userTurns, grammarErrors: errors.filter((e) => e.kind === 'grammar').length,
     errors, vocab: [...vocab.values()],
   };
