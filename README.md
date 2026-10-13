@@ -2,6 +2,8 @@
 
 Claude와 영어로 대화하며 문법을 교정받는 로컬 웹 앱. **텍스트 / 음성 / 혼합** 모드를 대화 도중에도 바꿀 수 있고, 학습 요약은 GitHub Private 저장소로 동기화됩니다.
 
+📖 처음이라면 [사용 설명서 (GUIDE.md)](GUIDE.md)부터 보세요. 라이선스: MIT.
+
 ## 빠른 시작 (Windows)
 1. 필요: Node.js 20+, Git, [Claude Code](https://claude.com/claude-code) (한 번 `claude`로 로그인), 선택: GitHub CLI `gh`
 2. `scripts\setup.cmd` — 환경 점검 / git 초기화 / 기록 가져오기
