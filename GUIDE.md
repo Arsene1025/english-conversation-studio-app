@@ -10,8 +10,8 @@ Claude와 영어로 대화하며 문법/표현을 교정받는 로컬 웹 앱입
 
 ## 2. 설치와 실행
 ```
-git clone <이 저장소 주소>
-cd <폴더>
+git clone https://github.com/Arsene1025/english-conversation-studio-app
+cd english-conversation-studio-app
 scripts\setup.cmd     # 환경 점검 (처음 한 번)
 scripts\start.cmd     # 서버 시작, 브라우저가 http://127.0.0.1:4177 로 열림
 ```
